@@ -25,13 +25,14 @@ RUN apt-get install -y make
 RUN mkdir -p /usr/local/lucida
 ADD . /usr/local/lucida
 WORKDIR "/usr/local/lucida/tools"
-RUN /bin/bash apt_deps.sh
-RUN /bin/bash install_python.sh
-RUN /bin/bash install_java.sh
-RUN /bin/bash install_opencv.sh
-RUN /bin/bash install_thrift.sh
-RUN /bin/bash install_fbthrift.sh
-RUN /bin/bash install_mongodb.sh
+RUN ["/bin/bash", "apt_deps.sh"]
+RUN ["/bin/bash", "install_python.sh"]
+RUN ["/bin/bash", "install_java.sh"]
+RUN ["/bin/bash", "install_opencv.sh"]
+RUN ["/bin/bash", "install_thrift.sh"]
+RUN ["/bin/bash", "install_fbthrift.sh"]
+RUN ["/bin/bash", "install_mongodb.sh"]
+
 WORKDIR "/usr/local/lucida/lucida"
 RUN /usr/bin/make
 RUN /bin/bash commandcenter/apache/install_apache.sh
